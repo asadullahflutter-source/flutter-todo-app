@@ -10,14 +10,16 @@ import 'package:flutter_application_1/Splash_screen/views/SplashScreen.dart';
 
 import 'package:flutter_application_1/todo_list/controller/binding.dart';
 import 'package:flutter_application_1/todo_list/views/todo.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 
 import 'package:supabase_flutter/supabase_flutter.dart';
 void main() async {
+  await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
   await Supabase.initialize(
-    url:'https://tnfgfuswbyskjdujvhjk.supabase.co',
-    anonKey:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRuZmdmdXN3Ynlza2pkdWp2aGprIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg1MDI1NjUsImV4cCI6MjA5NDA3ODU2NX0.Lf5BLcQJQN3q2tG1YDmbH9j5b4sWSwlCTc5SN6fG_Kg',
+    url: dotenv.get('SUPABASE_URL'),
+    anonKey: dotenv.get('SUPABASE_ANON_KEY'),
   );
   runApp(
    Myapp());
